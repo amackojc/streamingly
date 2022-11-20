@@ -1,0 +1,4 @@
+mysql_pass="password"
+mysql_addr="127.0.0.1"
+mysql_user="root"
+mysql_port=3306
