@@ -1,3 +1,4 @@
+use crate::model::{Song};
 use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use mysql::prelude::Queryable;
 use std::collections::{HashMap};
@@ -24,7 +25,66 @@ macro_rules! get_limit_and_offset {
     }
 }
 
+fn parse_songs(output: Vec<(i32, i32, String, String, i32)>) -> Vec<Song> {
+    let mut songs: HashMap<i32, Song> = HashMap::new();
+    for row in output {
+        let song = songs.entry(row.0).or_insert(
+                Song {
+                    id: row.0,
+                    album_id: row.1,
+                    title: row.2,
+                    filetype: row.3,
+                    media: row.4,
+                    // genres: HashSet::new(),
+                    // artists: HashSet::new(),
+                });
+        // song.genres.insert((row.5, row.6));
+        // song.artists.insert((row.7, row.8));
+    }
+    songs.into_iter().map(|(_, song)| song).collect()
+}
 
+async fn songs(req: HttpRequest, query: web::Query<HashMap<String, String>>) -> impl Responder {
+    get_path_variable!("id", id, req);
+    get_limit_and_offset!(query, limit, offset);
+    get_db_conn!(conn, req);
+
+    let output = if let Some(id) = id {
+        let stmt = conn.prep("
+            SELECT
+                s.id,
+                s.album_id,
+                s.title,
+                s.filetype,
+                s.song_media
+            FROM
+                songs as s
+            WHERE
+                s.id = ?;").unwrap();
+        conn.exec(stmt, (id,)).unwrap()
+    } else {
+        let stmt = conn.prep("WITH songs_ids as (
+            SELECT
+                id,
+                ROW_NUMBER() OVER(ORDER BY id) as num
+            FROM
+                songs
+            )
+            SELECT
+                s.id,
+                s.album_id,
+                s.title,
+                s.filetype,
+                s.song_media
+            FROM
+                songs as s
+            WHERE
+                si.num > ? and si.num <= ?;").unwrap();
+        conn.exec(stmt, (offset, limit+offset)).unwrap()
+    };
+    let songs = parse_songs(output);
+    HttpResponse::Ok().json(songs)
+}
 
 
 pub fn init(cfg: &mut web::ServiceConfig) {
