@@ -67,6 +67,17 @@ CREATE TABLE IF NOT EXISTS `streamingly`.`rating` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB; 
 
+USE `streamingly` ;
+
+-- -----------------------------------------------------
+-- Data for table `streamingly`.`media`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `streamingly`;
+INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (16, '04_Andy_G._Cohen_Gazing.mp3');
+
+COMMIT;
+
 USE `streamingly`;
 
 DELIMITER $$
