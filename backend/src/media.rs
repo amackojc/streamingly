@@ -22,7 +22,7 @@ async fn media(req: HttpRequest) -> impl Responder {
     }
     let path = path.unwrap();
 
-    let file = File::open("/home/michal/streamingly/out/media/".to_owned()+&path);
+    let file = File::open("/home/mateusz/projektMTP/streamingly/out/media/".to_owned()+&path);
     if let Err(e) = file {
         eprintln!("File open error: {:?}", e);
         return HttpResponse::NotFound().finish();

@@ -1,7 +1,7 @@
 use crate::model::{Song};
 use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use mysql::prelude::Queryable;
-use std::collections::{HashMap};
+use std::collections::{HashMap, HashSet};
 use crate::common::*;
 
 macro_rules! get_limit_and_offset {
@@ -25,7 +25,7 @@ macro_rules! get_limit_and_offset {
     }
 }
 
-fn parse_songs(output: Vec<(i32, i32, String, String, i32)>) -> Vec<Song> {
+fn parse_songs(output: Vec<(i32, i32, String, String, i32, i32, String, i32, String)>) -> Vec<Song> {
     let mut songs: HashMap<i32, Song> = HashMap::new();
     for row in output {
         let song = songs.entry(row.0).or_insert(
@@ -35,11 +35,11 @@ fn parse_songs(output: Vec<(i32, i32, String, String, i32)>) -> Vec<Song> {
                     title: row.2,
                     filetype: row.3,
                     media: row.4,
-                    // genres: HashSet::new(),
-                    // artists: HashSet::new(),
+                    genres: HashSet::new(),
+                    artists: HashSet::new(),
                 });
-        // song.genres.insert((row.5, row.6));
-        // song.artists.insert((row.7, row.8));
+        song.genres.insert((row.5, row.6));
+        song.artists.insert((row.7, row.8));
     }
     songs.into_iter().map(|(_, song)| song).collect()
 }
@@ -56,9 +56,21 @@ async fn songs(req: HttpRequest, query: web::Query<HashMap<String, String>>) -> 
                 s.album_id,
                 s.title,
                 s.filetype,
-                s.song_media
+                s.song_media,
+                g.id,
+                g.name,
+                a.id,
+                a.name
             FROM
                 songs as s
+            INNER JOIN song_genre as sg
+                ON s.id = sg.song_id
+            INNER JOIN song_artist as sa
+                ON s.id = sa.song_id
+            INNER JOIN genres as g
+                ON g.id = sg.genre_id
+            INNER JOIN artists as a
+                ON a.id = sa.artist_id
             WHERE
                 s.id = ?;").unwrap();
         conn.exec(stmt, (id,)).unwrap()
@@ -75,9 +87,23 @@ async fn songs(req: HttpRequest, query: web::Query<HashMap<String, String>>) -> 
                 s.album_id,
                 s.title,
                 s.filetype,
-                s.song_media
+                s.song_media,
+                g.id,
+                g.name,
+                a.id,
+                a.name
             FROM
                 songs as s
+            INNER JOIN song_genre as sg
+                ON s.id = sg.song_id
+            INNER JOIN song_artist as sa
+                ON s.id = sa.song_id
+            INNER JOIN genres as g
+                ON g.id = sg.genre_id
+            INNER JOIN artists as a
+                ON a.id = sa.artist_id
+            INNER JOIN songs_ids as si
+                ON s.id = si.id
             WHERE
                 si.num > ? and si.num <= ?;").unwrap();
         conn.exec(stmt, (offset, limit+offset)).unwrap()

@@ -3,7 +3,7 @@ pub use mysql::Pool;
 #[macro_export]
 macro_rules! get_path {
     ($path:expr) => {
-        format!("/home/mateusz/streamingly/out/{}", $path)
+        format!("/home/mateusz/projektMTP/streamingly/out/{}", $path)
     }
 }
 

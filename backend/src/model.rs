@@ -1,4 +1,5 @@
 use serde::Serialize;
+use std::collections::HashSet;
 
 #[derive(Serialize)]
 pub struct Song {
@@ -7,5 +8,7 @@ pub struct Song {
     pub title: String,
     pub filetype: String,
     pub media: i32,
+    pub genres: HashSet<(i32, String)>,
+    pub artists: HashSet<(i32, String)>
 }
 

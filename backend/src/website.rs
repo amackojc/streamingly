@@ -3,7 +3,7 @@ use actix_files::{Files, NamedFile};
 
 pub fn init(cfg: &mut web::ServiceConfig) {
     cfg.route("/", web::get().to(index));
-    cfg.service(Files::new("/static", "/home/mateusz/streamingly/out/static"));
+    cfg.service(Files::new("/static", "/home/mateusz/projektMTP/streamingly/out/static"));
 }
 
 async fn index(_req: HttpRequest) -> Result<NamedFile> {
