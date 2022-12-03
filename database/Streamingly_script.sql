@@ -118,6 +118,17 @@ COMMIT;
 
 USE `streamingly`;
 
+-- -----------------------------------------------------
+-- Data for table `streamingly`.`artists`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `streamingly`;
+INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (1, 'Till Paradiso', 1);
+INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (2, 'Andy G. Cohen', 12);
+INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (3, 'Derek Clegg', 20);
+
+COMMIT;
+
 DELIMITER $$
 
 USE `streamingly`$$
