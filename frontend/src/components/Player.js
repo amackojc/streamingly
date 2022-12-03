@@ -1,5 +1,7 @@
 import React,   { useState, useEffect, useRef, useContext } from "react";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+import SkipNextIcon from "@material-ui/icons/SkipNext";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import "./Player.css";
 import PlayerContext from '../context/PlayerContext'
@@ -9,6 +11,8 @@ function Player(props) {
   const {
     currentSong,
     songs,
+    nextSong,
+    prevSong,
     playing,
     togglePlaying,
     handleEnd,
@@ -19,6 +23,7 @@ function Player(props) {
 
   const audio = useRef('audio_tag');
 
+  // self State
   const [statevolum] = useState(0.3)
   const [dur, setDur] = useState(0)
 
@@ -45,7 +50,7 @@ function Player(props) {
   }, [currentSong])
 
 
-
+  // eslint-disable-next-line no-lone-blocks
   {
     if (typeof songs[currentSong].artists !== 'undefined' && typeof songs[currentSong].genres !== 'undefined' ){ 
 
@@ -68,6 +73,7 @@ function Player(props) {
        
 
       <div className="footer__center">
+        <SkipPreviousIcon onClick={prevSong} className="footer__icon" />      
         {playing ? (
           <PauseCircleOutlineIcon
           onClick={() => { togglePlaying(); toggleAudio(); }}
@@ -82,6 +88,7 @@ function Player(props) {
           />
         )}
  
+        <SkipNextIcon  onClick={nextSong} className="footer__icon" />
         
       </div>
     </div>

@@ -6,7 +6,7 @@
   overflow-y: overlay;
   padding-right: 10px;
   min-width: 230px;
-  height: 89.1vh;
+  height: 300vh;
   color: white;
   background-color: #040404;
 }
@@ -25,5 +25,10 @@
   border-radius: 40px;
   font-weight: 600;
   background-color: #7000a8;
+}
+.music {
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 15px;
 }
 
