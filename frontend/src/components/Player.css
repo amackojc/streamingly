@@ -7,6 +7,7 @@
     height:  auto;
     width: 100%;
     background-color: #282828;
+    z-index: 101;
   }
   
   .footer__left {
@@ -33,13 +34,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-right: 150px;
+    margin: auto;
   }
   
   .footer__icon__play{
     width: 44px !important;
     height: 44px !important;
     
+  }
+  
+  .footer__icon:hover,
+  .footer__icon__play:hover,
+  .repeat:hover,
+  .random:hover {
+    transition: transform 0.2s ease-in-out;
+    transform: scale(1.2) !important;
   }
   
   

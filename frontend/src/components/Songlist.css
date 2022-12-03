@@ -7,6 +7,12 @@
   color: white;
 }
 
+.songContainer:hover {
+  cursor: pointer;
+  background-color: black;
+  opacity: 0.8;
+}
+
 .songRow__info {
   margin-left: 20px;
 }

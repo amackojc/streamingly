@@ -1,7 +1,7 @@
 import {
     SET_CURRENT_SONG,
     TOGGLE_PLAYING,
-    SET_SONGS,
+    SET_SONGS
 
   } from './Types'
   
