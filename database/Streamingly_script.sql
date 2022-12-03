@@ -50,6 +50,24 @@ CREATE TABLE IF NOT EXISTS `streamingly`.`songs` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `streamingly`.`artists`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `streamingly`.`artists` ;
+
+CREATE TABLE IF NOT EXISTS `streamingly`.`artists` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'artist\'s id',
+  `name` VARCHAR(45) NOT NULL COMMENT 'name of the artist',
+  `image_media` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `image_media_idx` (`image_media` ASC) VISIBLE,
+  CONSTRAINT `image_media`
+    FOREIGN KEY (`image_media`)
+    REFERENCES `streamingly`.`media` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- -----------------------------------------------------
 -- Table `streamingly`.`rating`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `streamingly`.`rating` ;
