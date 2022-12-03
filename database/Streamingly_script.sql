@@ -67,6 +67,23 @@ CREATE TABLE IF NOT EXISTS `streamingly`.`artists` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+DROP TABLE IF EXISTS `streamingly`.`song_artist` ;
+
+CREATE TABLE IF NOT EXISTS `streamingly`.`song_artist` (
+  `song_id` INT UNSIGNED NOT NULL,
+  `artist_id` INT UNSIGNED NOT NULL,
+  CONSTRAINT `song_artist_song_id`
+    FOREIGN KEY (`song_id`)
+    REFERENCES `streamingly`.`songs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `sond_artist_artist_id`
+    FOREIGN KEY (`artist_id`)
+    REFERENCES `streamingly`.`artists` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'A table that will let us map songs with artists ----> n:m';
+
 -- -----------------------------------------------------
 -- Table `streamingly`.`rating`
 -- -----------------------------------------------------
