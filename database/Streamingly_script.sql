@@ -67,6 +67,9 @@ CREATE TABLE IF NOT EXISTS `streamingly`.`artists` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+-- -----------------------------------------------------
+-- Table `streamingly`.`song_artist`
+-- -----------------------------------------------------
 DROP TABLE IF EXISTS `streamingly`.`song_artist` ;
 
 CREATE TABLE IF NOT EXISTS `streamingly`.`song_artist` (
