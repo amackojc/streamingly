@@ -1,2 +1,5 @@
+.rustc_info*
 *node_modules*
 *out*
+*frontend/build*
+release*
