@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import playerContext from './PlayerContext';
 import playerReducer from './Reducer';
-import { songsArr, artistsArr, genreArr, albumArr} from './tables';
+import { songsArr, artistsArr, albumArr} from './tables';
 
 
 import {
@@ -16,7 +16,6 @@ const PlayerState = props => {
     songs: songsArr,
     albums: albumArr,
     artists: artistsArr,
-    genres: genreArr,
     playing: false,
     audio: null
   }
@@ -74,7 +73,6 @@ const PlayerState = props => {
       songs: state.songs,
       albums: state.albums,
       artists: state.artists,
-      genres: state.genres,
       playing: state.playing,
       audio: state.audio,
       nextSong,

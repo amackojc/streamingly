@@ -52,7 +52,7 @@ function Player(props) {
 
   // eslint-disable-next-line no-lone-blocks
   {
-    if (typeof songs[currentSong].artists !== 'undefined' && typeof songs[currentSong].genres !== 'undefined' ){ 
+    if (typeof songs[currentSong].artists !== 'undefined') {
 
    
 
