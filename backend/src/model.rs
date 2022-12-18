@@ -8,6 +8,58 @@ pub struct Song {
     pub title: String,
     pub filetype: String,
     pub media: i32,
-    pub artists: HashSet<(i32, String)>
+    pub genres: HashSet<(i32, String)>,
+    pub artists: HashSet<(i32, String)>,
+}
+
+#[derive(Serialize)]
+pub struct Album {
+    id: i32,
+    name: String,
+    media: i32
+}
+
+impl From<(i32, String, i32)> for Album {
+    fn from(tuple: (i32, String, i32)) -> Self {
+        Album {
+            id: tuple.0,
+            name: tuple.1,
+            media: tuple.2,
+        }
+    }
+}
+
+#[derive(Serialize)]
+pub struct Artist {
+    id: i32,
+    name: String,
+    media: i32
+}
+
+impl From<(i32, String, i32)> for Artist {
+    fn from(tuple: (i32, String, i32)) -> Self {
+        Artist {
+            id: tuple.0,
+            name: tuple.1,
+            media: tuple.2,
+        }
+    }
+}
+
+#[derive(Serialize)]
+pub struct Genre {
+    id: i32,
+    name: String,
+    media: i32,
+}
+
+impl From<(i32, String, i32)> for Genre {
+    fn from(tuple: (i32, String, i32)) -> Self {
+        Genre {
+            id: tuple.0,
+            name: tuple.1,
+            media: tuple.2,
+        }
+    }
 }
 

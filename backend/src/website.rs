@@ -3,6 +3,8 @@ use actix_files::{Files, NamedFile};
 
 pub fn init(cfg: &mut web::ServiceConfig) {
     cfg.route("/", web::get().to(index));
+    cfg.route("/artists{rest:.*}", web::get().to(index));
+    cfg.route("/genre{rest:.*}", web::get().to(index));
     cfg.service(Files::new("/static", "/home/alex/Documents/streamingly-builded_project/out/static"));
 }
 
