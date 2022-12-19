@@ -10,7 +10,9 @@
   color: white;
   background-color: #040404;
 }
-
+.selected {
+  background-color: white;
+}
 .sidebar__title {
   display: grid;
   place-items: center;
@@ -31,4 +33,3 @@
   padding: 5px;
   font-size: 15px;
 }
-

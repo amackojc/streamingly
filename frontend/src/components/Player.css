@@ -1,55 +1,61 @@
 .footer {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    bottom: 0;
-    padding: 8px;
-    height:  auto;
-    width: 100%;
-    background-color: #282828;
-    z-index: 101;
-  }
-  
-  .footer__left {
-    display: flex;
-    flex:0.3;
-    align-items: center;
-    color: white;
-    width: 300px;
-    flex: auto;
-  }
-  
-  .active{
-    color:white;
-  }
-  .random {
-    color: white;
-  }
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  padding: 8px;
+  height:  auto;
+  width: 100%;
+  background-color: #282828;
+}
 
-  .footer__center {
-    flex: 0.4;
-    max-width: 300px;
+.footer__left {
+  display: flex;
+  flex:0.3;
+  align-items: center;
+  color: white;
+  width: 200px;
+  flex: auto;
+}
 
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: auto;
-  }
+.active{
+  color:white;
+}
+.random {
+  color: white;
+}
+
+.footer__center {
+  flex: 0.4;
+  max-width: 300px;
+
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 150px;
+}
+
+.footer__icon__play{
+  width: 44px !important;
+  height: 44px !important;
   
-  .footer__icon__play{
-    width: 44px !important;
-    height: 44px !important;
-    
-  }
-  
-  .footer__icon:hover,
-  .footer__icon__play:hover,
-  .repeat:hover,
-  .random:hover {
-    transition: transform 0.2s ease-in-out;
-    transform: scale(1.2) !important;
-  }
-  
-  
-  
+}
+
+.footer__icon:hover,
+.footer__icon__play:hover,
+.repeat:hover,
+.random:hover {
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.2) !important;
+}
+
+.footer__right {
+  display: flex;
+  flex:0.3;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  flex: auto;
+  margin-right: 50px;
+}  

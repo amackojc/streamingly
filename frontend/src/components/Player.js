@@ -2,8 +2,10 @@ import React,   { useState, useEffect, useRef, useContext } from "react";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
+
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import "./Player.css";
+
 import PlayerContext from '../context/PlayerContext'
 import axios from 'axios'
 
@@ -43,16 +45,16 @@ function Player(props) {
     fetchData();
   },[]);
 
-
   useEffect(() => {
     audio.current.volume = statevolum;
     if (playing) { toggleAudio() }
   }, [currentSong])
 
 
-  // eslint-disable-next-line no-lone-blocks
   {
-    if (typeof songs[currentSong].artists !== 'undefined') {
+    if (typeof songs[currentSong].artists !== 'undefined' && typeof songs[currentSong].genres !== 'undefined' ){ 
+      const newArtist = songs[currentSong].artists.toString().replace(/[0-9]/g, '').replace(',',' ');
+      const newGenre = songs[currentSong].genres.toString().replace(/[0-9]/g, '').replace(',',' ').replace(',,',' ').replace(',,',' ');
 
    
 
@@ -71,6 +73,11 @@ function Player(props) {
     src={"http://localhost:3000/media/"+songs[currentSong].media}
     />
        
+      <div className="footer__left">
+    <div className="footer__songInfo">
+            <h4 >{songs[currentSong].title}</h4>
+          </div>
+    </div>
 
       <div className="footer__center">
         <SkipPreviousIcon onClick={prevSong} className="footer__icon" />      
@@ -90,6 +97,8 @@ function Player(props) {
  
         <SkipNextIcon  onClick={nextSong} className="footer__icon" />
         
+      </div>
+      <div className="footer__right">
       </div>
     </div>
     )

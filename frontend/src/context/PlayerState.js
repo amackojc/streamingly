@@ -1,13 +1,14 @@
 import React, { useReducer } from 'react';
 import playerContext from './PlayerContext';
 import playerReducer from './Reducer';
-import { songsArr, artistsArr, albumArr} from './tables';
+import { songsArr, artistsArr, genreArr, albumArr} from './tables';
 
 
 import {
   SET_CURRENT_SONG,
   TOGGLE_PLAYING,
   SET_SONGS,
+  SET_ARTIST,
 } from './Types'
 
 const PlayerState = props => {
@@ -16,6 +17,7 @@ const PlayerState = props => {
     songs: songsArr,
     albums: albumArr,
     artists: artistsArr,
+    genres: genreArr,
     playing: false,
     audio: null
   }
@@ -28,7 +30,7 @@ const PlayerState = props => {
   const SetCurrent = id => dispatch({ type: SET_CURRENT_SONG, data: id })
 
   const setSongs = (newSongs) => dispatch({ type: SET_SONGS, data: newSongs })
-
+  const setArtist = (newArtist) => dispatch({ type: SET_ARTIST, data: newArtist })
   // Prev song
   const prevSong = () => {
     if (state.currentSong === 0) {
@@ -73,6 +75,7 @@ const PlayerState = props => {
       songs: state.songs,
       albums: state.albums,
       artists: state.artists,
+      genres: state.genres,
       playing: state.playing,
       audio: state.audio,
       nextSong,
@@ -81,6 +84,7 @@ const PlayerState = props => {
       togglePlaying,
       handleEnd,
       setSongs,
+      setArtist,
       setPlayingFalse,
     }}>
 
