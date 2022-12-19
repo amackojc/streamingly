@@ -235,6 +235,11 @@ INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (13, '01_Andy_G._Cohen_H
 INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (14, '02_Andy_G._Cohen_Decapod.mp3');
 INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (15, '03_Andy_G._Cohen_In_Awareness.mp3');
 INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (16, '04_Andy_G._Cohen_Gazing.mp3');
+INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (17, 'jazz.jpg');
+INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (18, 'rock.jpg');
+INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (19, 'pop.jpg');
+INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (20, 'electro.jpg');
+INSERT INTO `streamingly`.`media` (`id`, `path`) VALUES (21, 'blues.jpg');
 
 COMMIT;
 
@@ -245,6 +250,9 @@ START TRANSACTION;
 USE `streamingly`;
 INSERT INTO `streamingly`.`albums` (`id`, `name`, `image_media`) VALUES (1, 'Stay Tonight', 10);
 INSERT INTO `streamingly`.`albums` (`id`, `name`, `image_media`) VALUES (2, 'Prisma', 11);
+INSERT INTO `streamingly`.`albums` (`id`, `name`, `image_media`) VALUES (3, 'Man on the Run', 12);
+INSERT INTO `streamingly`.`albums` (`id`, `name`, `image_media`) VALUES (4, 'Indigo', 13);
+
 
 COMMIT;
 
@@ -265,9 +273,39 @@ INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_
 INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_media`) VALUES (NULL, 2, 'Decapod', 'mp3', 14);
 INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_media`) VALUES (NULL, 2, 'In Awareness', 'mp3', 15);
 INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_media`) VALUES (NULL, 2, 'Gazing', 'mp3', 16);
-INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_media`) VALUES (NULL, 2, 'Minty Soak', 'mp3', 17);
-INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_media`) VALUES (NULL, 2, 'Our Young Guts', 'mp3', 18);
-INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_media`) VALUES (NULL, 2, 'Epoxy Resin', 'mp3', 19);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `streamingly`.`genres`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `streamingly`;
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (1, 'jazz', 17);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (2, 'rock', 18);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (3, 'pop', 19);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (4, 'electronic', 20);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (5, 'blues', 21);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `streamingly`.`song_genre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `streamingly`;
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (1, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (2, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (3, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (4, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (5, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (6, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (7, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (8, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (9, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (10, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (11, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (12, 2);
 
 COMMIT;
 
@@ -277,8 +315,8 @@ COMMIT;
 START TRANSACTION;
 USE `streamingly`;
 INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (1, 'Till Paradiso', 1);
-INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (2, 'Andy G. Cohen', 12);
-INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (3, 'Derek Clegg', 20);
+INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (2, 'Andy G. Cohen', 3);
+INSERT INTO `streamingly`.`artists` (`id`, `name`, `image_media`) VALUES (3, 'Derek Clegg', 5);
 
 COMMIT;
 
@@ -293,16 +331,6 @@ INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (3, 1);
 INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (4, 1);
 INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (5, 1);
 INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (6, 1);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (7, 1);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (8, 1);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (9, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (10, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (11, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (12, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (13, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (14, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (15, 2);
-INSERT INTO `streamingly`.`song_artist` (`song_id`, `artist_id`) VALUES (16, 3);
 
 COMMIT;
 
