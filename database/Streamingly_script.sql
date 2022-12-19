@@ -74,6 +74,46 @@ CREATE TABLE IF NOT EXISTS `streamingly`.`songs` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `streamingly`.`genres`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `streamingly`.`genres` ;
+
+CREATE TABLE IF NOT EXISTS `streamingly`.`genres` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'genre\'s id',
+  `name` VARCHAR(45) NOT NULL COMMENT 'name of the genre',
+  `image_media` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `genres_image_media_idx` (`image_media` ASC) VISIBLE,
+  CONSTRAINT `genres_image_media`
+    FOREIGN KEY (`image_media`)
+    REFERENCES `streamingly`.`media` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+-- -----------------------------------------------------
+-- Table `streamingly`.`song_genre`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `streamingly`.`song_genre` ;
+
+CREATE TABLE IF NOT EXISTS `streamingly`.`song_genre` (
+  `song_id` INT UNSIGNED NOT NULL,
+  `genre_id` INT UNSIGNED NOT NULL,
+  CONSTRAINT `song_genre_song_id`
+    FOREIGN KEY (`song_id`)
+    REFERENCES `streamingly`.`songs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `song_genre_genre_id`
+    FOREIGN KEY (`genre_id`)
+    REFERENCES `streamingly`.`genres` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+COMMENT = 'A table that will let us map songs with genres ----> n:m';
+
+
+-- -----------------------------------------------------
 -- Table `streamingly`.`artists`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `streamingly`.`artists` ;
@@ -130,6 +170,49 @@ CREATE TABLE IF NOT EXISTS `streamingly`.`rating` (
 ENGINE = InnoDB;
 
 USE `streamingly` ;
+
+-- -----------------------------------------------------
+-- function add_album_to_genre
+-- -----------------------------------------------------
+
+USE `streamingly`;
+DROP function IF EXISTS `streamingly`.`add_album_to_genre`;
+
+DELIMITER $$
+USE `streamingly`$$
+CREATE FUNCTION add_album_to_genre (album_id int, genre_id int)
+RETURNS int
+DETERMINISTIC
+BEGIN
+    DECLARE id INT;
+    DECLARE count INT;
+    DECLARE done INTEGER DEFAULT false;
+    DECLARE cur CURSOR FOR
+    SELECT s.id FROM songs as s WHERE s.album_id = album_id;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = true;
+
+    SET count = 0;
+    
+    OPEN cur;
+    song_loop:
+    LOOP
+        FETCH cur into id;
+        IF done = true THEN
+            LEAVE song_loop;
+        END IF;
+        INSERT INTO song_genre(song_id, genre_id) VALUES(id, genre_id);
+        SET count = count + 1;
+        ITERATE song_loop;
+    END LOOP;
+    CLOSE cur;
+    RETURN count;
+END$$
+
+DELIMITER ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
 -- Data for table `streamingly`.`media`
