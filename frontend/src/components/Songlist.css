@@ -7,6 +7,11 @@
   color: white;
 }
 
+.songRow:hover {
+  cursor: pointer;
+  background-color: black;
+  opacity: 0.8;
+}
 
 .songRow__info {
   margin-left: 20px;
@@ -20,4 +25,9 @@
   font-size: 14px;
   margin-top: 3px;
   color: gray;
+}
+
+.songRow__album {
+  height: 100px;
+  width: 100px;
 }

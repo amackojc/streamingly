@@ -2,6 +2,7 @@ import {
     SET_CURRENT_SONG,
     TOGGLE_PLAYING,
     SET_SONGS,
+    SET_ALBUM,
     SET_ARTIST
 
   } from './Types'
@@ -31,6 +32,12 @@ export default (state, action) => {
           artists: action.data,
           
         }
+      case SET_ALBUM: 
+      return {
+        ...state,
+        albums: action.data,
+        
+      }
       default:
         return state
     }

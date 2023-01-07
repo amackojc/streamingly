@@ -2,10 +2,8 @@ import React,   { useState, useEffect, useRef, useContext } from "react";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
-
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import "./Player.css";
-
 import PlayerContext from '../context/PlayerContext'
 import axios from 'axios'
 
@@ -13,6 +11,7 @@ function Player(props) {
   const {
     currentSong,
     songs,
+     albums,
     nextSong,
     prevSong,
     playing,
@@ -50,7 +49,6 @@ function Player(props) {
     if (playing) { toggleAudio() }
   }, [currentSong])
 
-
   {
     if (typeof songs[currentSong].artists !== 'undefined' && typeof songs[currentSong].genres !== 'undefined' ){ 
       const newArtist = songs[currentSong].artists.toString().replace(/[0-9]/g, '').replace(',',' ');
@@ -74,8 +72,19 @@ function Player(props) {
     />
        
       <div className="footer__left">
+       { 
+      albums.filter(
+        (album) => album.id === songs[currentSong].album_id
+        ).map((album)=>
+      <img
+          key = {album.id}
+          src = {"http://localhost:3000/media/"+album.media } alt =""
+          className="footer__albumLogo"         
+        />
+        )}
     <div className="footer__songInfo">
             <h4 >{songs[currentSong].title}</h4>
+            <p>{newArtist}{" - "}{newGenre}</p>
           </div>
     </div>
 

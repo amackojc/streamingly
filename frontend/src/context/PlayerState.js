@@ -9,6 +9,7 @@ import {
   TOGGLE_PLAYING,
   SET_SONGS,
   SET_ARTIST,
+  SET_ALBUM
 } from './Types'
 
 const PlayerState = props => {
@@ -31,6 +32,7 @@ const PlayerState = props => {
 
   const setSongs = (newSongs) => dispatch({ type: SET_SONGS, data: newSongs })
   const setArtist = (newArtist) => dispatch({ type: SET_ARTIST, data: newArtist })
+  const setAlbum = (newAlbum) => dispatch({ type: SET_ALBUM, data: newAlbum })
   // Prev song
   const prevSong = () => {
     if (state.currentSong === 0) {
@@ -86,6 +88,7 @@ const PlayerState = props => {
       setSongs,
       setArtist,
       setPlayingFalse,
+      setAlbum
     }}>
 
     {props.children}

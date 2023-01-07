@@ -12,6 +12,10 @@ import Artists from './components/Artists';
 import Genre from './components/Genre';
 import GenreSongs from './components/GenreSongs';
 import ArtistSongs from './components/ArtistSongs';
+import Albums from './components/Albums'
+import AlbumSongs from './components/AlbumSongs'
+import AllAlbums from './components/AllAlbums'
+
 
 
 function App() {  
@@ -33,11 +37,20 @@ function App() {
     <Route exact path = "/genre" render = {props =>(
          <Genre/>
     )}/>
+    <Route exact path = "/albums/:name/:id" render = {props =>(
+         <Albums/>
+    )}/>
     <Route exact path = "/genre/:name/:id" render = {props =>(
          <GenreSongs/>
     )}/>
     <Route exact path = "/artists/:name/:id" render = {props =>(
          <ArtistSongs/>
+    )}/>
+    <Route exact path = "/albums/:name/:id/songs" render = {props =>(
+         <AlbumSongs/>
+    )}/>
+    <Route exact path = "/allalbums" render = {props =>(
+         <AllAlbums/>
     )}/>
     </div>
     </div>
