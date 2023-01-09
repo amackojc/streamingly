@@ -252,6 +252,43 @@ INSERT INTO `streamingly`.`songs` (`id`, `album_id`, `title`, `filetype`, `song_
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `streamingly`.`genres`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `streamingly`;
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (1, 'jazz', 43);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (2, 'rock', 44);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (3, 'pop', 45);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (4, 'electronic', 46);
+INSERT INTO `streamingly`.`genres` (`id`, `name`, `image_media`) VALUES (5, 'blues', 47);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `streamingly`.`song_genre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `streamingly`;
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (1, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (2, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (3, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (4, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (5, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (6, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (7, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (8, 1);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (9, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (10, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (11, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (12, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (13, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (14, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (15, 2);
+INSERT INTO `streamingly`.`song_genre` (`song_id`, `genre_id`) VALUES (16, 2);
+
+
+-- -----------------------------------------------------
 -- Data for table `streamingly`.`artists`
 -- -----------------------------------------------------
 START TRANSACTION;
