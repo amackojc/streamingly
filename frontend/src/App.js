@@ -16,6 +16,7 @@ import Albums from './components/Albums'
 import AlbumSongs from './components/AlbumSongs'
 import AllAlbums from './components/AllAlbums'
 
+/*import Login from './components/Login'*/
 
 
 function App() {  
@@ -24,6 +25,7 @@ function App() {
     <Router>
          
       <div className="App">
+     {/*<Login/> */}
      <div className="player">
       <div className="player__body">
     <Sidebar/>

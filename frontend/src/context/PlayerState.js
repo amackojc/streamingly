@@ -3,11 +3,13 @@ import playerContext from './PlayerContext';
 import playerReducer from './Reducer';
 import { songsArr, artistsArr, genreArr, albumArr} from './tables';
 
-
 import {
   SET_CURRENT_SONG,
+  TOGGLE_RANDOM,
+  TOGGLE_REPEAT,
   TOGGLE_PLAYING,
   SET_SONGS,
+  SET_TEMP_SONGS,
   SET_ARTIST,
   SET_ALBUM
 } from './Types'
@@ -16,9 +18,14 @@ const PlayerState = props => {
   const initialState = {
     currentSong: 0,
     songs: songsArr,
+    tempSongs: songsArr,
+    // songs: [],
     albums: albumArr,
+    songsSidebar:songsArr,
     artists: artistsArr,
     genres: genreArr,
+    repeat: false,
+    random: false,
     playing: false,
     audio: null
   }
@@ -33,6 +40,7 @@ const PlayerState = props => {
   const setSongs = (newSongs) => dispatch({ type: SET_SONGS, data: newSongs })
   const setArtist = (newArtist) => dispatch({ type: SET_ARTIST, data: newArtist })
   const setAlbum = (newAlbum) => dispatch({ type: SET_ALBUM, data: newAlbum })
+  const setTempSongs = (newTempSongs) => dispatch({ type: SET_TEMP_SONGS, data: newTempSongs })
   // Prev song
   const prevSong = () => {
     if (state.currentSong === 0) {
@@ -52,6 +60,9 @@ const PlayerState = props => {
     }
   }
 
+  // Repeat and Random
+  const toggleRepeat = (id) => dispatch({ type: TOGGLE_REPEAT, data: state.repeat ? false : true })
+  const toggleRandom = (id) => dispatch({ type: TOGGLE_RANDOM, data: state.random ? false : true })
 
 
   // End of Song
@@ -75,18 +86,24 @@ const PlayerState = props => {
     value={{
       currentSong: state.currentSong,
       songs: state.songs,
+      tempSongs: state.tempSongs,
       albums: state.albums,
       artists: state.artists,
       genres: state.genres,
+      repeat: state.repeat,
+      random: state.random,
       playing: state.playing,
       audio: state.audio,
       nextSong,
       prevSong,
       SetCurrent,
+      toggleRandom,
+      toggleRepeat,
       togglePlaying,
       handleEnd,
       setSongs,
       setArtist,
+      setTempSongs,
       setPlayingFalse,
       setAlbum
     }}>

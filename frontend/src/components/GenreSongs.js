@@ -7,6 +7,7 @@ import axios from 'axios'
 function GenreSongs() {
     const {name, id} = useParams();
     const { SetCurrent, currentSong, songs,albums,setSongs, setAlbum } = useContext(playerContext)
+    // const [song, setSong] = useState([])
     
     useEffect(() => {
       const fetchData = async () => {
